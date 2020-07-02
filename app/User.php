@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'uid', 'firstname', 'lastname', 'name', 'username', 'email', 'phone', 'password'
     ];
 
     /**
@@ -28,12 +29,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public static function login($request)
+    {
+        $uid = $request->uid;
+        $password = $request->password;
+
+        $remember = $request->remember;
+
+        return (Auth::attempt(['uid' => $uid, 'password' => $password], $remember));
+    }
 }
