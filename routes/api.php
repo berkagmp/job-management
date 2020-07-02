@@ -13,6 +13,10 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('jobs')->group(function () {
+    Route::get('/', 'JobController@list')->name('job.list');
+    Route::get('/{job_id}', 'JobController@get')->name('job.get');
+    Route::post('/', 'JobController@create')->name('job.create');
+    Route::put('/{job_id}', 'JobController@update')->name('job.update');
+    Route::delete('/{job_id}', 'JobController@delete')->name('job.delete');
 });
