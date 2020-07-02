@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 
@@ -29,7 +30,21 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public static function login($request)
+    /**
+     * Get the jobs for the user.
+     */
+    public function jobs()
+    {
+        return $this->hasMany('App\Job');
+    }
+
+    /**
+     * Authntication
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return bool
+     */
+    public static function login(Request $request)
     {
         $uid = $request->uid;
         $password = $request->password;
