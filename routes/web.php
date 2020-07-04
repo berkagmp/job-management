@@ -19,4 +19,8 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/', 'HomeController@home')->name('home');
     Route::get('logout', 'AuthController@logout')->name('logout');
+
+    Route::post('/addjob', 'JobController@create')->name('job.add');
+    Route::post('/updatejob', 'JobController@update')->name('job.update');
+    Route::post('/deletejob', 'JobController@delete')->name('job.delete');
 });

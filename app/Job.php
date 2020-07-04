@@ -23,10 +23,11 @@ class Job extends Model
      * @var array
      */
     public static $validation_rule = [
+        'id'        => 'sometimes|required|integer',
         'user_id'   => 'required|integer',
         'type_id'   => 'required|integer',
         'date'      => 'required|date_format:Y-m-d',
-        'time'      => 'required|date_format:H:i:s',
+        'time'      => 'required',
         'location'  => 'required|string|max:255',
         'price'     => 'required|numeric'
     ];

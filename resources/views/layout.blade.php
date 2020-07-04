@@ -12,10 +12,22 @@
 </head>
 
 <body>
-  <div id="app" class="app">
-    @yield('content')
-    @yield('scripts')
-</div>
+    <header>
+        @include('includes.header')
+    </header>
+
+    <div class="container">
+        @include('flash::message')
+    </div>
+
+    <div id="app" class="app">
+        @yield('content')
+        @yield('scripts')
+    </div>
 </body>
+
+<script>
+    $('#flash-overlay-modal').modal();
+</script>
 
 </html>
