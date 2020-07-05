@@ -1,5 +1,9 @@
 @extends('layout')
 
+@section('scripts')
+<script src="{{ asset('/js/job.js') }}"></script>
+@stop
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -28,9 +32,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($jobs as $job)
+                    @forelse($jobs as $job)
                     <tr>
-                        <th scope="row">{{$job->id}}</th>
+                        <td scope="row">{{$job->id}}</td>
                         <td>{{$job->type->name}}</td>
                         <td>{{$job->date}}</td>
                         <td>{{date('h:i A', strtotime($job->time))}}</td>
@@ -39,7 +43,11 @@
                         <td><button id="btn_edit" class="btn btn-success btn-sm" data-id="{{$job->id}}"
                                 data-toggle="modal">Edit</button></td>
                     </tr>
-                    @endforeach
+                    @empty
+                    <tr>
+                        <td colspan="7" class="nodata">No Data</td>
+                    </tr>
+                    @endforelse
                 </tbody>
             </table>
             <div class="container">
@@ -54,7 +62,6 @@
         </div>
     </div>
 </div>
-@stop
 
 <!-- Add Modal HTML -->
 <div id="addModal" class="modal fade">
@@ -187,3 +194,5 @@
         </div>
     </div>
 </div>
+
+@stop

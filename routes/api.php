@@ -12,8 +12,9 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::get('/idcheck', 'AuthController@idcheck');
 
-Route::prefix('jobs')->group(function () {
+Route::prefix('jobs')->middleware('auth')->group(function () {
     Route::get('/', 'JobController@list')->name('api.job.list');
     Route::get('/{job_id}', 'JobController@get')->name('api.job.get');
     Route::post('/', 'JobController@create')->name('api.job.create');

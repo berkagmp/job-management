@@ -1,3 +1,1 @@
-require('./bootstrap');
-
-require('./job');
+require("./bootstrap");
