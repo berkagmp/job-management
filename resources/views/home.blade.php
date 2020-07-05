@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('scripts')
-<script src="{{ asset('/js/job.js') }}"></script>
+<script src="/js/job.js"></script>
 @stop
 
 @section('content')
